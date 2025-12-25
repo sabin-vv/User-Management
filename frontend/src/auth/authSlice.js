@@ -16,6 +16,7 @@ const authSlice = createSlice({
             state.accessToken = action.payload.accessToken
             state.isAuthenticated = true
             state.refreshAttempted = true
+            localStorage.setItem('hasSession', 'true')
         },
         setAccessToken(state, action) {
             state.accessToken = action.payload.accessToken
@@ -31,6 +32,7 @@ const authSlice = createSlice({
             state.accessToken = null
             state.isAuthenticated = false
             state.refreshAttempted = true
+            localStorage.removeItem('hasSession')
         }
     }
 })
