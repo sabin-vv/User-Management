@@ -8,7 +8,7 @@ import swal from "sweetalert2"
 
 function AdminHome() {
     const dispatch = useDispatch()
-    const { token } = useSelector((state) => state.auth)
+    const { accessToken } = useSelector((state) => state.auth)
     const [users, setUsers] = useState([])
     const [loading, setLoading] = useState(false)
     const [query, setQuery] = useState("")
@@ -17,8 +17,8 @@ function AdminHome() {
 
     const headers = useMemo(() => ({
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`
-    }), [token])
+        Authorization: `Bearer ${accessToken}`
+    }), [accessToken])
 
     const fetchUsers = useCallback(async () => {
         try {
@@ -35,8 +35,8 @@ function AdminHome() {
     }, [headers, dispatch])
 
     useEffect(() => {
-        if (token) fetchUsers()
-    }, [token, fetchUsers])
+        if (accessToken) fetchUsers()
+    }, [accessToken, fetchUsers])
 
     const resetForm = () => setForm({ id: null, name: "", email: "", password: "", role: "user" })
 

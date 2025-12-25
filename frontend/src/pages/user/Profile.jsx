@@ -6,10 +6,11 @@ import { toast } from "react-toastify"
 import { loginSuccess } from "../../auth/authSlice"
 import { profileSchema } from "../../schemas/profile.schema"
 import { authFetch } from "../../utils/authFetch"
+import { Navigate } from "react-router-dom"
 
 export default function Profile() {
-    const { user } = useSelector((state) => state.auth)
-    const token = useSelector((state) => state.auth.token)
+    const { user, isAuthenticated } = useSelector((state) => state.auth)
+    const accessToken = useSelector((state) => state.auth.accessToken)
     const [isEditing, setIsEditing] = useState(false)
     const [formData, setFormData] = useState({
         name: user?.name || "",
@@ -31,7 +32,8 @@ export default function Profile() {
         try {
             const res = await fetch('http://localhost:5000/api/user/profile/avatar', {
                 method: "PUT",
-                headers: { Authorization: `Bearer ${token}` },
+                headers: { Authorization: `Bearer ${accessToken}` },
+                credentials: 'include',
                 body: formData
             })
             const result = await res.json()
@@ -40,7 +42,7 @@ export default function Profile() {
                 return
             }
             dispatch(loginSuccess({
-                token,
+                accessToken,
                 user: result.user
             }))
             toast.success("Profile picture updated");
@@ -69,17 +71,17 @@ export default function Profile() {
                 method: "PUT",
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`
+                    Authorization: `Bearer ${accessToken}`
                 },
                 body: JSON.stringify(formData)
-            })
+            }, dispatch)
             const result = await res.json()
             if (!res.ok) {
                 toast.error(result.message)
                 return
             }
             dispatch(loginSuccess({
-                token,
+                accessToken,
                 user: result.user
             }))
             toast.success("Profile updated successfully");
@@ -92,14 +94,15 @@ export default function Profile() {
 
     const handleCancel = () => {
         setFormData({
-            name: user.name,
-            email: user.email
+            name: user?.name || "",
+            email: user?.email || ""
         })
         setIsEditing(false)
     }
 
     return (
         <>
+            {!isAuthenticated && <Navigate to="/login" replace />}
             <UserNavbar />
             <main className={styles.main}>
                 <div className={styles.container}>
@@ -119,16 +122,16 @@ export default function Profile() {
                             <div className={styles.avatar} onClick={() => fileInputRef.current.click()} >
                                 {user?.avatar ?
                                     (<img className={styles.avatarImage} src={`http://localhost:5000${user.avatar}`} alt="profile" />)
-                                    : (user.name.charAt(0).toUpperCase())}
+                                    : (user?.name?.charAt(0)?.toUpperCase())}
                             </div>
 
                             <input type="file" accept="image/*" ref={fileInputRef} onChange={handleAvatarUpload} style={{ display: "none" }} />
 
                             <div className={styles.nameSection}>
                                 <h2 className={styles.fullName}>
-                                    {user.name}
+                                    {user?.name || ""}
                                 </h2>
-                                <p className={styles.email}>{user.email}</p>
+                                <p className={styles.email}>{user?.email || ""}</p>
                             </div>
                         </div>
 

@@ -8,9 +8,18 @@ export default function AdminNavbar() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const handleLogout = () => {
-        dispatch(logout())
-        navigate("/admin")
+    const handleLogout = async () => {
+        try {
+            await fetch("http://localhost:5000/api/auth/logout", {
+                method: "POST",
+                credentials: "include",
+            })
+        } catch {
+            // proceed even if network error
+        } finally {
+            dispatch(logout())
+            navigate("/admin")
+        }
     }
 
     return (

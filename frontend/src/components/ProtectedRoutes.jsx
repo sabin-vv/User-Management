@@ -6,7 +6,8 @@ export default function ProtectedRoutes({ children, role }) {
         return <Navigate to="/login" replace />
     }
     if (role && user.role !== role) {
-        return <Navigate to="/login" replace />
+        const redirectPath = user.role === "admin" ? "/admin/home" : "/"
+        return <Navigate to={redirectPath} replace />
     }
     return children
 };

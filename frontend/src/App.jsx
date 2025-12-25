@@ -7,8 +7,10 @@ import UserHome from './pages/user/Home'
 import Profile from './pages/user/Profile'
 import AdminHome from './pages/admin/Home'
 import AdminLogin from './pages/admin/Login'
+import { useAuthInit } from './useAuthInit'
 
 function App() {
+  useAuthInit()
 
   return (
     <>
@@ -33,9 +35,12 @@ function App() {
         } />
         <Route path='/login' element={<Login mode="signin" />} />
         <Route path='/signup' element={<Login mode="signup" />} />
-        <Route path='/user/profile' element={<Profile />} />
+        <Route path='/user/profile' element={
+          <ProtectedRoutes role="user">
+            <Profile />
+          </ProtectedRoutes>
+        } />
 
-        {/* Admin routes */}
         <Route path='/admin/home' element={
           <ProtectedRoutes role="admin">
             <AdminHome />
