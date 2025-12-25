@@ -1,0 +1,49 @@
+.main {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0b1220 0%, #1a2332 100%);
+  padding: 40px 16px;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.welcomeSection {
+  margin-bottom: 40px;
+}
+
+.welcomeContent {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 32px;
+  backdrop-filter: blur(10px);
+}
+
+.welcomeTitle {
+  font-size: 36px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 12px 0;
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 24px 16px;
+  }
+
+  .welcomeContent {
+    padding: 24px;
+  }
+
+  .welcomeTitle {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .welcomeTitle {
+    font-size: 24px;
+  }
+}

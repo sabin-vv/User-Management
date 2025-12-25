@@ -1,0 +1,105 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #0b1220;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+}
+
+.badge {
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(59, 130, 246, 0.18);
+  color: #93c5fd;
+  border: 1px solid rgba(59, 130, 246, 0.35);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.link {
+  text-decoration: none;
+  padding: 8px 10px;
+  border-radius: 10px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.78);
+  border: 1px solid transparent;
+  transition: background 120ms ease, border-color 120ms ease, color 120ms ease;
+}
+
+.link:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.primaryButton {
+  appearance: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.primaryButton {
+  color: #0b1220;
+  background: #fff;
+  border-color: rgba(255, 255, 255, 0.12);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.primaryButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 720px) {
+  .container {
+    flex-wrap: wrap;
+  }
+
+  .nav {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}

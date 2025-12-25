@@ -1,0 +1,107 @@
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 60;
+    backdrop-filter: blur(10px);
+    background: linear-gradient(120deg, #0b1220 0%, #0f172a 60%, #0b1220 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #e2e8f0;
+    font-weight: 800;
+    letter-spacing: 0.24px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.badge {
+    font-size: 12px;
+    padding: 3px 9px;
+    border-radius: 999px;
+    background: rgba(249, 115, 22, 0.18);
+    color: #fb923c;
+    border: 1px solid rgba(249, 115, 22, 0.35);
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.link {
+    text-decoration: none;
+    padding: 9px 12px;
+    border-radius: 12px;
+    font-size: 14px;
+    color: rgba(226, 232, 240, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: transform 120ms ease, background 140ms ease, color 140ms ease, border-color 140ms ease;
+}
+
+.link:hover,
+.link:focus-visible {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.18);
+    outline: none;
+    transform: translateY(-1px);
+}
+
+.primaryButton {
+    appearance: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    padding: 9px 12px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #0b1220;
+    background: linear-gradient(135deg, #f59e0b, #f97316);
+    box-shadow: 0 10px 30px rgba(249, 115, 22, 0.28);
+    transition: transform 120ms ease, box-shadow 140ms ease;
+}
+
+.primaryButton:hover,
+.primaryButton:focus-visible {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 34px rgba(249, 115, 22, 0.36);
+    outline: none;
+}
+
+.icon {
+    width: 22px;
+    height: 22px;
+}
+
+@media (max-width: 840px) {
+    .container {
+        flex-wrap: wrap;
+    }
+
+    .nav {
+        width: 100%;
+        justify-content: flex-start;
+    }
+}
