@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import styles from "./AdminNavbar.module.css"
 import logoutIcon from "../../assets/logout_16584919.png"
 import { logout } from "../../auth/authSlice"
+import { toast } from "react-toastify"
 
 export default function AdminNavbar() {
     const dispatch = useDispatch()
@@ -15,7 +16,7 @@ export default function AdminNavbar() {
                 credentials: "include",
             })
         } catch {
-            // proceed even if network error
+            toast.error("Logout Failed")
         } finally {
             dispatch(logout())
             navigate("/admin")
@@ -50,7 +51,7 @@ export default function AdminNavbar() {
                         Dashboard
                     </span>
                     <span
-                        onClick={() => navigate("/admin/users")}
+                        onClick={() => navigate("")}
                         className={styles.link}
                         role="button"
                         tabIndex={0}
@@ -58,7 +59,7 @@ export default function AdminNavbar() {
                         Users
                     </span>
                     <span
-                        onClick={() => navigate("/admin/reports")}
+                        onClick={() => navigate("")}
                         className={styles.link}
                         role="button"
                         tabIndex={0}
