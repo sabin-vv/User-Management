@@ -1,12 +1,12 @@
 import { useRef, useState } from "react"
 import UserNavbar from "../../components/Navbar/UserNavbar"
-import styles from "./Profile.module.css"
 import { useDispatch, useSelector } from "react-redux"
-import { toast } from "react-toastify"
 import { loginSuccess } from "../../auth/authSlice"
 import { profileSchema } from "../../schemas/profile.schema"
 import { authFetch } from "../../utils/authFetch"
 import { Navigate } from "react-router-dom"
+import { toast } from "react-toastify"
+import styles from "./Profile.module.css"
 
 export default function Profile() {
     const { user, isAuthenticated } = useSelector((state) => state.auth)

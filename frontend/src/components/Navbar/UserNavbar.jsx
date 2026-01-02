@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import styles from "./UserNavbar.module.css"
 import logoutIcon from "../../assets/logout_16584919.png"
 import { logout } from "../../auth/authSlice"
+import { toast } from "react-toastify"
 
 
 export default function UserNavbar() {
@@ -15,7 +16,7 @@ export default function UserNavbar() {
                 credentials: "include",
             })
         } catch {
-            // proceed even if network error
+            toast.error("Something went wrong!")
         } finally {
             dispatch(logout())
             navigate("/login")

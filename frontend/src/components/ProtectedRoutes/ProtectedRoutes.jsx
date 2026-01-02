@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
+
 export default function ProtectedRoutes({ children, role }) {
     const { isAuthenticated, user } = useSelector((state) => state.auth)
     if (!isAuthenticated) {

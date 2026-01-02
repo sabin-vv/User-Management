@@ -1,7 +1,7 @@
 
 import { ToastContainer, Slide } from 'react-toastify'
 import { Routes, Route } from 'react-router-dom'
-import ProtectedRoutes from './components/ProtectedRoutes'
+import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes'
 import Login from './pages/user/Login'
 import UserHome from './pages/user/Home'
 import Profile from './pages/user/Profile'

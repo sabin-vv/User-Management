@@ -105,7 +105,7 @@ export default function SignupForm({ isLoading = false, formMode }) {
                         <input
                             type="password"
                             id="confirmPassword"
-                            name='comfirmPassword'
+                            name='confirmPassword'
                             placeholder="Confirm your password"
                             disabled={isLoading}
                             className={`${styles.input} ${errors.confirmPassword ? styles.error : ''}`}
