@@ -2,13 +2,13 @@ import { useCallback, useEffect, useMemo, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { toast } from "react-toastify"
 import AdminNavbar from "../../components/Navbar/AdminNavbar"
-import { authFetch } from "../../utils/authFetch"
+import { adminAuthFetch } from "../../utils/adminAuthFetch"
 import styles from "./Home.module.css"
 import swal from "sweetalert2"
 
 function AdminHome() {
     const dispatch = useDispatch()
-    const { accessToken } = useSelector((state) => state.auth)
+    const { accessToken } = useSelector((state) => state.adminAuth)
     const [users, setUsers] = useState([])
     const [loading, setLoading] = useState(false)
     const [query, setQuery] = useState("")
@@ -23,7 +23,7 @@ function AdminHome() {
     const fetchUsers = useCallback(async () => {
         try {
             setLoading(true)
-            const res = await authFetch("http://localhost:5000/api/admin/users", { headers }, dispatch)
+            const res = await adminAuthFetch("http://localhost:5000/api/admin/users", { headers }, dispatch)
             const data = await res.json()
             if (!res.ok) throw new Error(data.message || "Failed to load users")
             setUsers(data.users || [])
@@ -47,7 +47,7 @@ function AdminHome() {
             const body = JSON.stringify({ name: form.name, email: form.email, role: form.role, ...(isEdit ? {} : { password: form.password }) })
             const url = isEdit ? `http://localhost:5000/api/admin/users/${form.id}` : "http://localhost:5000/api/admin/users"
             const method = isEdit ? "PUT" : "POST"
-            const res = await authFetch(url, { method, headers, body }, dispatch)
+            const res = await adminAuthFetch(url, { method, headers, body }, dispatch)
             const data = await res.json()
             if (!res.ok) throw new Error(data.message || "Save failed")
             toast.success(isEdit ? "User updated" : "User created")
@@ -79,7 +79,7 @@ function AdminHome() {
         }
         try {
             setLoading(true)
-            const res = await authFetch(`http://localhost:5000/api/admin/users/${id}`, { method: "DELETE", headers }, dispatch)
+            const res = await adminAuthFetch(`http://localhost:5000/api/admin/users/${id}`, { method: "DELETE", headers }, dispatch)
             const data = await res.json()
             if (!res.ok) throw new Error(data.message || "Delete failed")
             toast.success("User deleted")

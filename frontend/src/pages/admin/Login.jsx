@@ -4,9 +4,9 @@ import LoginForm from "../../components/Auth/LoginForm"
 import styles from "../user/Login.module.css"
 
 export default function AdminLogin() {
-    const { isAuthenticated, user } = useSelector((state) => state.auth)
+    const { isAuthenticated, admin } = useSelector((state) => state.adminAuth)
 
-    if (isAuthenticated && user?.role === "admin") {
+    if (isAuthenticated && admin) {
         return <Navigate to="/admin/home" replace />
     }
 

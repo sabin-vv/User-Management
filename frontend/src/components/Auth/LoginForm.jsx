@@ -2,6 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { loginSchema } from '../../schemas/auth.schema';
 import { useDispatch } from 'react-redux';
 import { loginSuccess } from '../../auth/authSlice';
+import { loginSuccess as adminLoginSuccess } from '../../auth/adminAuthSlice';
 import { useNavigate } from "react-router-dom"
 import { toast } from "react-toastify";
 import styles from './LoginForm.module.css';
@@ -31,11 +32,12 @@ export default function LoginForm({ isLoading = false, formMode, hideSignupToggl
             return
         }
         toast.success(result.message)
-        dispatch(loginSuccess(result))
         if (result.user.role === 'user') {
+            dispatch(loginSuccess(result))
             navigate("/")
         }
         if (result.user.role === 'admin') {
+            dispatch(adminLoginSuccess({ admin: result.user, accessToken: result.accessToken }))
             navigate("/admin/home")
         }
     }
